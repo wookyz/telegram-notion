@@ -7,3 +7,6 @@ lib/
 db.json
 notionhello.py
 .vscode/
+*.json
+test.py
+__pycache__/

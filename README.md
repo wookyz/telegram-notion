@@ -33,7 +33,8 @@ It's pretty simple, no?
 
 ### Step 2 | Install Git and Python 3!
 
-If you don't have Git and/or Python 3 installed yet, use this command. 
+If you don't have Git and/or Python 3 installed yet, use this command.
+ 
 ![Linux badge](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white
 )
 
@@ -74,6 +75,7 @@ pip install -r requirements.txt
 ```
 
 If you did all correct, there should be some indication about the python virtual environment when `source bin/activate` was run, similarly to this:
+
 ![virtual environment](https://dkrn4sk0rn31v.cloudfront.net/2018/11/08121425/Captura-de-Tela-2018-11-08-a%CC%80s-11.11.58.png)
 
 **Note:** The next time you just run `source bin/activate` in virtual environment's directory.
