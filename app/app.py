@@ -1,5 +1,5 @@
 import logging
-from os import getenv
+from os import getenv, environ
 from datetime import date, datetime
 from typing import Dict, List
 
@@ -22,11 +22,12 @@ class DiaryBot:
 
     def __init__(self,
                  telegramkey: str,
+                 port: int,
                  ) -> None:
-
-        self.updater = Updater(token=telegramkey)
+        self.token = telegramkey
+        self.port = port
+        self.updater = Updater(token=self.token)
         self.dispatcher = self.updater.dispatcher
-
         self.notionpy = None
 
         self.selected = None
@@ -87,7 +88,11 @@ class DiaryBot:
 
     def initbot(self):
         self.setup_dispatcher()
-        self.updater.start_polling()
+        self.updater.start_webhook(listen="0.0.0.0",
+                                   port=int(self.port),
+                                   url_path=self.token
+                                   )
+        self.updater.bot.set_webhook('https://telegramtonotion.herokuapp.com/'+self.token)
         logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                             level=logging.INFO)
         self.updater.idle()
@@ -95,6 +100,8 @@ class DiaryBot:
 
 if __name__ == "__main__":
     load_dotenv()
+    PORT = int(environ.get('PORT', 5000))
     api_key = getenv("TELEGRAM_KEY")
-    bot = DiaryBot(api_key)
+
+    bot = DiaryBot(api_key, PORT)
     bot.initbot()
