@@ -90,9 +90,9 @@ class DiaryBot:
         self.setup_dispatcher()
         self.updater.start_webhook(listen="0.0.0.0",
                                    port=int(self.port),
-                                   url_path=self.token
+                                   url_path=self.token,
+                                   webhook_url='https://telegramtonotion.herokuapp.com/'+self.token
                                    )
-        self.updater.bot.set_webhook('https://telegramtonotion.herokuapp.com/'+self.token)
         logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                             level=logging.INFO)
         self.updater.idle()
