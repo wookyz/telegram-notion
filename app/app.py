@@ -100,7 +100,7 @@ class DiaryBot:
 
 if __name__ == "__main__":
     load_dotenv()
-    PORT = int(environ.get('PORT', 5000))
+    PORT = int(environ.get('PORT', 8443))
     api_key = getenv("TELEGRAM_KEY")
 
     bot = DiaryBot(api_key, PORT)
